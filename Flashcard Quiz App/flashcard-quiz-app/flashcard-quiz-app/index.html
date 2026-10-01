@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcards</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <h1>Flashcards</h1>
+    <button class="btn solid" id="addBtn" type="button">Add card</button>
+  </header>
+
+  <main>
+    <section id="study" aria-label="Study">
+      <div class="progress-row">
+        <span id="count" aria-live="polite"></span>
+        <div class="bar" aria-hidden="true"><i id="fill"></i></div>
+      </div>
+
+      <div class="stage">
+        <div class="slot" id="slot">
+          <div class="card" id="card">
+            <article class="face front">
+              <span class="tag">Question</span>
+              <p id="qText"></p>
+            </article>
+            <article class="face back">
+              <span class="tag">Answer</span>
+              <p id="aText"></p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn ghost" id="prevBtn" type="button">Previous</button>
+        <button class="btn solid flip" id="flipBtn" type="button" aria-pressed="false">Show Answer</button>
+        <button class="btn ghost" id="nextBtn" type="button">Next</button>
+      </div>
+
+      <div class="manage">
+        <button class="link" id="editBtn" type="button">Edit card</button>
+        <button class="link danger" id="delBtn" type="button">Delete card</button>
+      </div>
+    </section>
+
+    <section id="empty" class="empty" hidden>
+      <h2>No flashcards yet</h2>
+      <p>Add your first card to start studying.</p>
+      <button class="btn solid" id="emptyAdd" type="button">Add card</button>
+    </section>
+  </main>
+</div>
+
+<dialog id="formDlg">
+  <form id="cardForm" method="dialog" novalidate>
+    <h2 id="formTitle">Add card</h2>
+    <label for="qInput">Question</label>
+    <textarea id="qInput" rows="3" maxlength="300" placeholder="What do you want to remember?"></textarea>
+    <label for="aInput">Answer</label>
+    <textarea id="aInput" rows="4" maxlength="600" placeholder="Write the answer"></textarea>
+    <p class="err" id="err" role="alert" hidden>Enter both a question and an answer.</p>
+    <div class="actions">
+      <button class="btn ghost" type="button" id="cancelBtn">Cancel</button>
+      <button class="btn solid" type="submit" id="saveBtn">Save card</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="delDlg">
+  <form method="dialog">
+    <h2>Delete this card?</h2>
+    <p class="note">This can't be undone.</p>
+    <div class="actions">
+      <button class="btn ghost" value="cancel">Keep card</button>
+      <button class="btn danger-solid" value="ok" id="confirmDel">Delete card</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
