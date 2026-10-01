@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0F7B6C">
+<title>Stride - Fitness Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Stride</h1>
+  <div class="date">
+    <button id="prev" aria-label="Previous day">&#8249;</button>
+    <input type="date" id="day" aria-label="Selected day">
+    <button id="next" aria-label="Next day">&#8250;</button>
+  </div>
+</header>
+<main>
+  <section class="rings" id="rings" aria-label="Progress toward daily goals"></section>
+  <section class="grid">
+    <form id="form" class="card">
+      <h2>Log activity</h2>
+      <label>Exercise type
+        <select name="type">
+          <option>Walking</option><option>Running</option><option>Cycling</option>
+          <option>Gym workout</option><option>HIIT</option><option>Swimming</option>
+          <option>Yoga</option><option>Daily steps</option><option>Other</option>
+        </select>
+      </label>
+      <div class="three">
+        <label>Minutes<input name="minutes" type="number" min="0" max="1440" inputmode="numeric" placeholder="30"></label>
+        <label>Steps<input name="steps" type="number" min="0" max="200000" inputmode="numeric" placeholder="4000"></label>
+        <label>Calories<input name="calories" type="number" min="0" max="10000" inputmode="numeric" placeholder="Auto"></label>
+      </div>
+      <p class="hint">Leave calories empty and we estimate them from the exercise type and minutes.</p>
+      <button class="primary" type="submit">Add to <span id="addlbl">today</span></button>
+      <p id="msg" role="status" aria-live="polite"></p>
+    </form>
+    <div class="card">
+      <div class="row"><h2>Last 7 days</h2>
+        <div class="tabs" id="tabs" role="tablist">
+          <button data-m="steps" class="on">Steps</button>
+          <button data-m="minutes">Minutes</button>
+          <button data-m="calories">Calories</button>
+        </div>
+      </div>
+      <div id="chart"></div>
+      <div class="stats"><div><b id="streak">0</b><span>day streak</span></div><div><b id="avg">0</b><span>daily average</span></div><div><b id="best">0</b><span>best day</span></div></div>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Activity on <span id="lbl"></span></h2>
+    <ul id="list"></ul>
+  </section>
+  <section class="card">
+    <h2>Daily goals</h2>
+    <form id="goals" class="three">
+      <label>Steps<input name="steps" type="number" min="1" required></label>
+      <label>Active minutes<input name="minutes" type="number" min="1" required></label>
+      <label>Calories<input name="calories" type="number" min="1" required></label>
+    </form>
+    <div class="actions">
+      <button id="csv" type="button">Export CSV</button>
+      <button id="demo" type="button">Load sample data</button>
+      <button id="clear" type="button" class="danger">Clear all data</button>
+    </div>
+    <p class="hint">Everything is stored in this browser on your device (localStorage). No account needed.</p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
